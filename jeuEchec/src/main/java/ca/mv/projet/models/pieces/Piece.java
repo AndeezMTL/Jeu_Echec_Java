@@ -6,7 +6,7 @@ import ca.mv.projet.models.cases.Position;
 public abstract class Piece {
     protected final boolean estBlanc;
     protected boolean estCapturee = false;
-//allo
+//commentaire
     protected String image;
 
     public Piece(boolean estBlanc) {
