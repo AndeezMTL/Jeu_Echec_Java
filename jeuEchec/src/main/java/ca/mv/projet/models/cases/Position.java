@@ -20,7 +20,9 @@ public class Position {
     }
 
     public boolean estValide() {
-        // TODO: implémenter valeurs entre 0 et 7
+        if (x < 8 && x >= 0 && y < 8 && y >= 0) {
+            return true;
+        }
         return false;
     }
 
