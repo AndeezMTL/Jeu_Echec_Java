@@ -9,6 +9,7 @@ import ca.mv.projet.models.pieces.*;
 
 public class Echiquier {
 
+    public boolean get;
     private Case[][] plateau;
 
     public Echiquier() {

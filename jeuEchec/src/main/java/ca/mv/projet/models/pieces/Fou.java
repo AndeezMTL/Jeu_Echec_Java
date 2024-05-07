@@ -12,6 +12,20 @@ public class Fou extends Piece {
     @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
         // TODO: remplacer par le code approprié
+        int mouvementY = posDestination.getY() - posCourante.getY();
+        int mouvementX = posDestination.getX() - posCourante.getX();
+
+
+        if (
+                (mouvementX == 2 && mouvementY == 2) || (mouvementX == -2 && mouvementY == -2) ||
+                        (mouvementX == 2 && mouvementY == -2) || (mouvementX == -2 && mouvementY == 2) ||
+                        (mouvementX == -1 && mouvementY == 1) || (mouvementX == 1 && mouvementY == 1) ||
+                        (mouvementX == -2 && mouvementY == 2) || (mouvementX == -2 && mouvementY == 2)
+        )
+
+        {
+            if (echiquier.get);
+        }
         System.out.println("peutBouger fou");
         return true;
     }
