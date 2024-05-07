@@ -1,4 +1,4 @@
-package ca.mv.projet.models;
+package main.java.ca.mv.projet.models;
 
 import ca.mv.projet.Utilities;
 import ca.mv.projet.models.cases.Case;
