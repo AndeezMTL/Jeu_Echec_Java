@@ -1,14 +1,15 @@
-package ca.mv.projet.models.cases;
+package main.java.ca.mv.projet.models.cases;
 
-import ca.mv.projet.models.pieces.Piece;
+import main.java.ca.mv.projet.models.pieces.Piece;
+import ca.mv.projet.models.cases.Position;
 
 public abstract class Case {
-    private final Position position;
+    private final Position posCourante;
     private Piece piece;
     private boolean estCaseBlanche;
 
-    public Case(Position position) {
-        this.position = position;
+    public Case(Position posCourante) {
+        this.posCourante = posCourante;
         setEstCaseBlanche();
     }
 
@@ -18,7 +19,7 @@ public abstract class Case {
     }
 
     private void setEstCaseBlanche() {
-        this.estCaseBlanche = (position.getX() + position.getY()) % 2 == 0;
+        this.estCaseBlanche = (posCourante.getX() + posCourante.getY()) % 2 == 0;
     }
 
     public boolean isEstCaseBlanche(){
@@ -26,7 +27,7 @@ public abstract class Case {
     }
 
     public Position getPosition() {
-        return position;
+        return posCourante;
     }
 
     public Piece getPiece() {
@@ -40,7 +41,7 @@ public abstract class Case {
     @Override
     public String toString() {
         return "Case{" +
-                "position=" + position +
+                "position=" + posCourante +
                 ", piece=" + piece +
                 ", estCaseBlanche=" + estCaseBlanche +
                 '}';

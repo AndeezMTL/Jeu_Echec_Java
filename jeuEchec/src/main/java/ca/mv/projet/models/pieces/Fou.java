@@ -1,6 +1,6 @@
-package ca.mv.projet.models.pieces;
+package main.java.ca.mv.projet.models.pieces;
 
-import ca.mv.projet.models.Echiquier;
+import main.java.ca.mv.projet.models.Echiquier;
 import ca.mv.projet.models.cases.Position;
 
 public class Fou extends Piece {

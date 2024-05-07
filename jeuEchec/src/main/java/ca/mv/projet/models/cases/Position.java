@@ -1,5 +1,6 @@
 package ca.mv.projet.models.cases;
 
+
 import ca.mv.projet.Utilities;
 
 public class Position {

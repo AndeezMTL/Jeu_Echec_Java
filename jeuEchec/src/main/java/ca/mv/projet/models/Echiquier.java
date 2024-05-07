@@ -1,11 +1,13 @@
-package ca.mv.projet.models;
+package main.java.ca.mv.projet.models;
 
 import ca.mv.projet.Utilities;
-import ca.mv.projet.models.cases.Case;
-import ca.mv.projet.models.cases.CaseOccupee;
-import ca.mv.projet.models.cases.CaseVide;
+import main.java.ca.mv.projet.models.cases.Case;
+import main.java.ca.mv.projet.models.cases.CaseOccupee;
+import main.java.ca.mv.projet.models.cases.CaseVide;
 import ca.mv.projet.models.cases.Position;
-import ca.mv.projet.models.pieces.*;
+import main.java.ca.mv.projet.models.pieces.*;
+
+
 
 public class Echiquier {
 

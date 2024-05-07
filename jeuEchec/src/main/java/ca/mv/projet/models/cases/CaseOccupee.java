@@ -1,8 +1,8 @@
-package ca.mv.projet.models.cases;
+package main.java.ca.mv.projet.models.cases;
 
-
-import ca.mv.projet.models.Echiquier;
-import ca.mv.projet.models.pieces.Piece;
+import ca.mv.projet.models.cases.Position;
+import main.java.ca.mv.projet.models.Echiquier;
+import main.java.ca.mv.projet.models.pieces.Piece;
 
 public class CaseOccupee extends Case {
 
@@ -14,7 +14,10 @@ public class CaseOccupee extends Case {
     }
 
     public boolean peutBouger(Position position, Position posDestination, Echiquier echiquier) {
-        // TODO: remplacer par le code approprié
+        if (!posDestination.estValide()) {
+            return false;
+        }
+        
         return false;
     }
 }

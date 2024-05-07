@@ -1,4 +1,4 @@
-package ca.mv.projet;
+package main.java.ca.mv.projet;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
