@@ -1,6 +1,6 @@
 package main.java.ca.mv.projet.models;
 
-import ca.mv.projet.Utilities;
+import main.java.ca.mv.projet.Utilities;
 import main.java.ca.mv.projet.models.cases.Case;
 import main.java.ca.mv.projet.models.cases.CaseOccupee;
 import main.java.ca.mv.projet.models.cases.CaseVide;

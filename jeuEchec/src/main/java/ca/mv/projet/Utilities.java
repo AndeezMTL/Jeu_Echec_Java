@@ -1,4 +1,4 @@
-package ca.mv.projet;
+package main.java.ca.mv.projet;
 
 public class Utilities {
     public static final double TAILLE_TUILE = 70;

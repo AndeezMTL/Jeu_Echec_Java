@@ -14,10 +14,23 @@ public class CaseOccupee extends Case {
     }
 
     public boolean peutBouger(Position position, Position posDestination, Echiquier echiquier) {
+        Case caseCourante = echiquier.getCaseParPosition(position);
+        Case caseDestination = echiquier.getCaseParPosition(posDestination);
+        Piece piece = caseCourante.getPiece();
+        Piece pieceDestination = caseDestination.getPiece();
+
         if (!posDestination.estValide()) {
             return false;
         }
-        
-        return false;
+
+        if (caseDestination.getPiece() != null && pieceDestination.isEstBlanc() == piece.isEstBlanc()) {
+            return false;
+        }
+
+        if (!piece.peutBouger(position, posDestination, echiquier)) {
+            return false;
+        }
+
+        return true;
     }
 }

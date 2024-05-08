@@ -1,4 +1,4 @@
-package ca.mv.projet.models;
+package main.java.ca.mv.projet.models;
 
 public class Joueur {
     // TODO: ajouter les attributs manquants
