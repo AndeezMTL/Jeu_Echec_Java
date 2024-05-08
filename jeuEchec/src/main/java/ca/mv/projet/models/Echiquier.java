@@ -11,6 +11,7 @@ import main.java.ca.mv.projet.models.pieces.*;
 
 public class Echiquier {
 
+    public boolean get;
     private Case[][] plateau;
 
     public Echiquier() {
@@ -21,6 +22,11 @@ public class Echiquier {
 
     private void instancierCasesVides() {
         // TODO: ajouter le code approprié
+        for (int i = 0; i < Utilities.NB_CASES_COTE; i++) {
+            for (int j = 0; j < Utilities.NB_CASES_COTE; j++) {
+                plateau[i][j] = new CaseVide(new Position(i,j));
+            }
+        }
     }
 
     private void placerPiecesInitSurPlateau() {

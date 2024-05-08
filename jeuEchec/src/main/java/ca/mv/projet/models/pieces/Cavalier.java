@@ -19,19 +19,22 @@ public class Cavalier extends Piece {
 
         if (
                 (mouvementX == 2 && mouvementY == 1) || (mouvementX == -2 && mouvementY == 1) ||
-                (mouvementX == 2 && mouvementY == -1) || (mouvementX == -2 && mouvementY == -1) ||
-                (mouvementX == 1 && mouvementY == 2) || (mouvementX == -1 && mouvementY == 2) ||
-                (mouvementX == 1 && mouvementY == -2) || (mouvementX == -1 && mouvementY == -2)
-            )
 
-                {
-                    if (echiquier.get)
-                }
+                        (mouvementX == 2 && mouvementY == -1) || (mouvementX == -2 && mouvementY == -1) ||
+                        (mouvementX == 1 && mouvementY == 2) || (mouvementX == -1 && mouvementY == 2) ||
+                        (mouvementX == 1 && mouvementY == -2) || (mouvementX == -1 && mouvementY == -2)
+        )
+
+        {
+            if (echiquier.get);
+        }
+
 
 
 
 
             System.out.println("peutBouger cavalier");
+
         return true;
     }
 }
