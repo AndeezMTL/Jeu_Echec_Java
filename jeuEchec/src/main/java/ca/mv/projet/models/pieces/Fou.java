@@ -11,27 +11,30 @@ public class Fou extends Piece {
 
     @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
-        // TODO: remplacer par le code approprié
         int mouvementY = posDestination.getY() - posCourante.getY();
         int mouvementX = posDestination.getX() - posCourante.getX();
 
-
-        if (
-                (mouvementX == 2 && mouvementY == 2) || (mouvementX == -2 && mouvementY == -2) ||
-                        (mouvementX == 2 && mouvementY == -2) || (mouvementX == -2 && mouvementY == 2) ||
-                        (mouvementX == -1 && mouvementY == 1) || (mouvementX == 1 && mouvementY == 1) ||
-                        (mouvementX == -2 && mouvementY == 2) || (mouvementX == -2 && mouvementY == 2)
-        )
-
-        {
-            if (echiquier.get);
+        // Vérification si le mouvement est en diagonale
+        if (estSurDiagonale(posCourante, posDestination)) {
+            // Vérification s'il n'y a pas d'obstacles sur la diagonale
+            int stepX = mouvementX > 0 ? 1 : -1;
+            int stepY = mouvementY > 0 ? 1 : -1;
+            int x = posCourante.getX() + stepX;
+            int y = posCourante.getY() + stepY;
+            while (x != posDestination.getX() && y != posDestination.getY()) {
+                if (echiquier.getPieceAtPosition(new Position(x, y)) != null) {
+                    // Il y a un obstacle sur la diagonale
+                    return false;
+                }
+                x += stepX;
+                y += stepY;
+            }
+            return true;
         }
-        System.out.println("peutBouger fou");
-        return true;
+        return false;
     }
 
-    public boolean estSurDiagonal(Position posCourante, Position posDestination){
-        // TODO : à tester
+    public boolean estSurDiagonale(Position posCourante, Position posDestination) {
         int diffSurX = posDestination.getX() - posCourante.getX();
         int diffSurY = posDestination.getY() - posCourante.getY();
 

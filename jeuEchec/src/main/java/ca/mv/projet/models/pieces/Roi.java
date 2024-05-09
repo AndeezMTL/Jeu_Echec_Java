@@ -10,10 +10,12 @@ public class Roi extends Piece {
 
     @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
-        // TODO: remplacer par le code approprié
-        // Implémenter la logique spécifique du déplacement du Roi
-        System.out.println("peutBouger roi");
-        return true;
+        int diffX = Math.abs(posDestination.getX() - posCourante.getX());
+        int diffY = Math.abs(posDestination.getY() - posCourante.getY());
+
+        // Vérifie si le mouvement est valide pour un roi (une seule case dans n'importe quelle direction)
+        return (diffX <= 1 && diffY <= 1);
     }
 }
+
 

@@ -1,4 +1,4 @@
-package main.java.ca.mv.projet.models.cases;
+package ca.mv.projet.models.cases;
 
 import ca.mv.projet.models.cases.Position;
 

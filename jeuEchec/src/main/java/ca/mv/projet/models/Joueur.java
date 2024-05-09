@@ -1,11 +1,34 @@
 package main.java.ca.mv.projet.models;
 
-public class Joueur {
-    // TODO: ajouter les attributs manquants
+import java.util.ArrayList;
+import java.util.List;
 
-    public Joueur(String nom){
-        // TODO: ajouter le code approprié
+public class Joueur {
+    private String nom;
+    private boolean estBlanc;
+    private List<Piece> piecesCapturees;
+
+    public Joueur(String nom, boolean estBlanc){
+        this.nom = nom;
+        this.estBlanc = estBlanc;
+        this.piecesCapturees = new ArrayList<>();
     }
 
-    // TODO: ajouter les méthodes manquantes
+    public String getNom() {
+        return nom;
+    }
+
+    public boolean isEstBlanc() {
+        return estBlanc;
+    }
+
+    public List<Piece> getPiecesCapturees() {
+        return piecesCapturees;
+    }
+
+    public void ajouterPieceCapturee(Piece piece) {
+        piecesCapturees.add(piece);
+    }
+
+    // Vous pouvez ajouter d'autres méthodes selon les besoins du jeu
 }

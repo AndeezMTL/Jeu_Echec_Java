@@ -11,8 +11,10 @@ public class Reine extends Piece {
 
     @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
-        // TODO: remplacer par le code approprié
-        System.out.println("peutBouger reine");
-        return true;
+        // Vérifie si le mouvement est valide pour une tour ou un fou
+        Tour tour = new Tour(estBlanche);
+        Fou fou = new Fou(estBlanche);
+        return tour.peutBouger(posCourante, posDestination, echiquier) || fou.peutBouger(posCourante, posDestination, echiquier);
     }
 }
+
