@@ -1,7 +1,7 @@
 package main.java.ca.mv.projet.models.pieces;
 
 import main.java.ca.mv.projet.models.Echiquier;
-import ca.mv.projet.models.cases.Position;
+import main.java.ca.mv.projet.models.cases.Position;
 
 public class Cavalier extends Piece {
 

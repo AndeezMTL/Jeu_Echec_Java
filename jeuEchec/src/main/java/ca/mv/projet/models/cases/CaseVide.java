@@ -1,6 +1,6 @@
-package ca.mv.projet.models.cases;
+package main.java.ca.mv.projet.models.cases;
 
-import ca.mv.projet.models.cases.Position;
+import main.java.ca.mv.projet.models.cases.Position;
 
 public class CaseVide extends Case {
 

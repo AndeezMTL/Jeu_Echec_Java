@@ -4,7 +4,7 @@ import main.java.ca.mv.projet.Utilities;
 import main.java.ca.mv.projet.models.cases.Case;
 import main.java.ca.mv.projet.models.cases.CaseOccupee;
 import main.java.ca.mv.projet.models.cases.CaseVide;
-import ca.mv.projet.models.cases.Position;
+import main.java.ca.mv.projet.models.cases.Position;
 import main.java.ca.mv.projet.models.pieces.*;
 
 

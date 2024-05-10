@@ -1,6 +1,7 @@
 package main.java.ca.mv.projet.models;
 
 import java.util.ArrayList;
+import main.java.ca.mv.projet.models.pieces.*;
 import java.util.List;
 
 public class Joueur {

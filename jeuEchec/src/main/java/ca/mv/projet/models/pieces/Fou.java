@@ -1,7 +1,7 @@
 package main.java.ca.mv.projet.models.pieces;
 
 import main.java.ca.mv.projet.models.Echiquier;
-import ca.mv.projet.models.cases.Position;
+import main.java.ca.mv.projet.models.cases.Position;
 
 public class Fou extends Piece {
 
@@ -21,10 +21,15 @@ public class Fou extends Piece {
             int stepY = mouvementY > 0 ? 1 : -1;
             int x = posCourante.getX() + stepX;
             int y = posCourante.getY() + stepY;
-            while (x != posDestination.getX() && y != posDestination.getY()) {
-                if (echiquier.getPieceAtPosition(new Position(x, y)) != null) {
-                    // Il y a un obstacle sur la diagonale
-                    return false;
+
+            while (x != posDestination.getX() || y != posDestination.getY()) {
+                Piece caseOccupeePiece = echiquier.getPieceAtPosition(new Position(x, y));
+                if (caseOccupeePiece != null) {
+                    if (caseOccupeePiece.isEstBlanc() == this.isEstBlanc()) {
+                        //il y a une pièce de même couleur sur la case, on ne peut pas bouger
+                        return false;
+                    }
+                    return true; //la pièce peut bouger, la case est occupée par une pièce ennemioe (donc on va la capturer)
                 }
                 x += stepX;
                 y += stepY;
