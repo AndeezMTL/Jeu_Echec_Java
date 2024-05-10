@@ -11,30 +11,22 @@ public class Cavalier extends Piece {
 
     @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
-        // TODO: remplacer par le code approprié
-
         int mouvementY = posDestination.getY() - posCourante.getY();
         int mouvementX = posDestination.getX() - posCourante.getX();
 
-
-        if (
-                (mouvementX == 2 && mouvementY == 1) || (mouvementX == -2 && mouvementY == 1) ||
-
-                        (mouvementX == 2 && mouvementY == -1) || (mouvementX == -2 && mouvementY == -1) ||
-                        (mouvementX == 1 && mouvementY == 2) || (mouvementX == -1 && mouvementY == 2) ||
-                        (mouvementX == 1 && mouvementY == -2) || (mouvementX == -1 && mouvementY == -2)
-        )
-
-        {
-            if (echiquier.get);
-        }
-
-
-
-
-
+        if ((mouvementX == Math.abs(2) && mouvementY == Math.abs(1)) || (mouvementY == Math.abs(2) && mouvementX == Math.abs(1))) {
+            Piece caseOccupeePiece = echiquier.getPieceAtPosition(new Position(posDestination.getX(), posDestination.getY()));
+            if (caseOccupeePiece != null) {
+                if (caseOccupeePiece.isEstBlanc() == this.isEstBlanc()) {
+                    //il y a une pièce de même couleur sur la case, on ne peut pas bouger
+                    return false;
+                }
+                System.out.println("peutBouger cavalier");
+                return true;//la pièce peut bouger, la case est occupée par une pièce ennemioe (donc on va la capturer)
+            }
             System.out.println("peutBouger cavalier");
-
-        return true;
+            return true;
+            }
+        return false;
     }
 }
