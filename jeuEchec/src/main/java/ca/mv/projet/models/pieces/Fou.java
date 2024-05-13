@@ -1,7 +1,7 @@
-package main.java.ca.mv.projet.models.pieces;
+package ca.mv.projet.models.pieces;
 
-import main.java.ca.mv.projet.models.Echiquier;
-import main.java.ca.mv.projet.models.cases.Position;
+import ca.mv.projet.models.Echiquier;
+import ca.mv.projet.models.cases.Position;
 
 public class Fou extends Piece {
 
@@ -9,7 +9,6 @@ public class Fou extends Piece {
         super(estBlanche);
     }
 
-    @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
         int mouvementY = posDestination.getY() - posCourante.getY();
         int mouvementX = posDestination.getX() - posCourante.getX();

@@ -1,8 +1,9 @@
-package main.java.ca.mv.projet.models.cases;
+package ca.mv.projet.models.cases;
 
-import main.java.ca.mv.projet.models.cases.Position;
-import main.java.ca.mv.projet.models.Echiquier;
-import main.java.ca.mv.projet.models.pieces.Piece;
+import ca.mv.projet.models.cases.Position;
+import ca.mv.projet.models.Echiquier;
+import ca.mv.projet.models.pieces.Piece;
+import ca.mv.projet.models.cases.Case;
 
 public class CaseOccupee extends Case {
 
@@ -19,7 +20,7 @@ public class CaseOccupee extends Case {
         Piece piece = caseCourante.getPiece();
         Piece pieceDestination = caseDestination.getPiece();
 
-        if (!posDestination.estValide()) {
+        if (!posDestination.isValid()) {
             return false;
         }
 

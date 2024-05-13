@@ -1,7 +1,7 @@
-package main.java.ca.mv.projet.models.cases;
+package ca.mv.projet.models.cases;
 
 
-import main.java.ca.mv.projet.Utilities;
+import ca.mv.projet.Utilities;
 
 public class Position {
     private final int x;
@@ -20,11 +20,8 @@ public class Position {
         return y;
     }
 
-    public boolean estValide() {
-        if (x < 8 && x >= 0 && y < 8 && y >= 0) {
-            return true;
-        }
-        return false;
+    public boolean isValid() {
+        return x < 8 && x >= 0 && y < 8 && y >= 0;
     }
 
     public int convertirEnIndex(){
@@ -39,11 +36,12 @@ public class Position {
         return x == position.x && y == position.y;
     }
 
+    public boolean equals(int _x, int _y) {
+        return _x == x && _y == y;
+    }
+
     @Override
     public String toString() {
-        return "Position{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return '(' + x + ", " + y +')';
     }
 }

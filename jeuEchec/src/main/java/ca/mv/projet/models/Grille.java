@@ -1,17 +1,18 @@
-package main.java.ca.mv.projet.composants;
+package ca.mv.projet.models;
 
-import main.java.ca.mv.projet.models.Echiquier;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 public class Grille {
 
     private final Echiquier echiquier;
-    @FXML
-    GridPane grid;
+    @FXML GridPane grid;
+    @FXML AnchorPane boardAnchorPane;
     // TODO: ajouter les attributs manquants
+    // lesquels?
 
     public Grille(Echiquier echiquier) {
         creerGrille();

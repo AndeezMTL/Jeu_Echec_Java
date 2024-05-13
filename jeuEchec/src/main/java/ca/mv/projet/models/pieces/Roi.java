@@ -1,9 +1,10 @@
-package main.java.ca.mv.projet.models.pieces;
+package ca.mv.projet.models.pieces;
 
-import main.java.ca.mv.projet.models.Echiquier;
-import main.java.ca.mv.projet.models.cases.Position;
+import ca.mv.projet.models.Echiquier;
+import ca.mv.projet.models.cases.Position;
 
 public class Roi extends Piece {
+
     public Roi(boolean estBlanche) {
         super(estBlanche);
     }

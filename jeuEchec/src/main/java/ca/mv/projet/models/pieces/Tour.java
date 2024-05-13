@@ -1,7 +1,7 @@
-package main.java.ca.mv.projet.models.pieces;
+package ca.mv.projet.models.pieces;
 
-import main.java.ca.mv.projet.models.Echiquier;
-import main.java.ca.mv.projet.models.cases.Position;
+import ca.mv.projet.models.Echiquier;
+import ca.mv.projet.models.cases.Position;
 
 public class Tour extends Piece {
 
@@ -29,7 +29,7 @@ public class Tour extends Piece {
                     if (caseOccupeePiece.isEstBlanc() == this.isEstBlanc()) {
                         return false;
                     }
-                    return true; //la pièce peut bouger, la case est occupée par une pièce ennemioe (donc on va la capturer)
+                    return true; //la pièce peut bouger, la case est occupée par une pièce ennemie (donc on va la capturer)
                 }
                 x += stepX;
                 y += stepY;

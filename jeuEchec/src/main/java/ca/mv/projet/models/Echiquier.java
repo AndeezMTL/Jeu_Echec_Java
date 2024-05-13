@@ -1,17 +1,16 @@
-package main.java.ca.mv.projet.models;
+package ca.mv.projet.models;
 
-import main.java.ca.mv.projet.Utilities;
-import main.java.ca.mv.projet.models.cases.Case;
-import main.java.ca.mv.projet.models.cases.CaseOccupee;
-import main.java.ca.mv.projet.models.cases.CaseVide;
-import main.java.ca.mv.projet.models.cases.Position;
-import main.java.ca.mv.projet.models.pieces.*;
-
+import ca.mv.projet.models.cases.CaseOccupee;
+import ca.mv.projet.models.cases.CaseVide;
+import ca.mv.projet.models.cases.Position;
+import ca.mv.projet.Utilities;
+import ca.mv.projet.models.cases.Case;
+import ca.mv.projet.models.pieces.*;
 
 
 public class Echiquier {
 
-    public boolean get;
+//    public boolean get;
     private Case[][] plateau;
 
     public Echiquier() {
