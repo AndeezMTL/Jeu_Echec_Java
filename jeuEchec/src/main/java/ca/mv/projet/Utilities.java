@@ -14,7 +14,7 @@ public class Utilities {
 
     public static int convertirPixelEnPos(double pixels) {
         // TODO : à tester
-        // c testé tkt
+
         return (int) Math.floor(pixels / TAILLE_TUILE);
     }
 }

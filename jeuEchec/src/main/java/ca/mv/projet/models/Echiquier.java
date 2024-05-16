@@ -11,7 +11,7 @@ import ca.mv.projet.models.pieces.*;
 public class Echiquier {
 
 //    public boolean get;
-    final private Case[][] plateau;
+    final protected Case[][] plateau;
 
     public Echiquier() {
         this.plateau = new Case[Utilities.NB_CASES_COTE][Utilities.NB_CASES_COTE]; // Échiquier 8x8
@@ -24,6 +24,7 @@ public class Echiquier {
         for (int i = 0; i < Utilities.NB_CASES_COTE; i++) {
             for (int j = 0; j < Utilities.NB_CASES_COTE; j++) {
                 plateau[i][j] = new CaseVide(new Position(i,j));
+                plateau[i][j].setEstCaseBlanche();
             }
         }
     }
@@ -120,7 +121,7 @@ public class Echiquier {
         int posX = Utilities.convertirPixelEnPos(xPixels) - 1;
         int posY = Utilities.convertirPixelEnPos(yPixels) - 1;
 
-        return getCaseParPosition(posY, posX);
+        return getCaseParPosition(posX, posY);
     }
 
     public boolean estValidMouve(Position posCourante, Position posDestination){
