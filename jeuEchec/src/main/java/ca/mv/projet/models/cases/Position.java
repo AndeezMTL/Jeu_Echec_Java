@@ -71,6 +71,10 @@ public class Position {
         return new Position(X, Y);
     }
 
+    public boolean equals(int _x, int _y) {
+        return _x == x && _y == y;
+    }
+
     @Override
     public String toString() {
         return '(' + x + ", " + y +')';
