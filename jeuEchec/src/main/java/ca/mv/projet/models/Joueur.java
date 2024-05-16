@@ -1,6 +1,7 @@
-package main.java.ca.mv.projet.models;
+package ca.mv.projet.models;
 
 import java.util.ArrayList;
+import ca.mv.projet.models.pieces.Piece;
 import java.util.List;
 
 public class Joueur {
@@ -30,5 +31,4 @@ public class Joueur {
         piecesCapturees.add(piece);
     }
 
-    // Vous pouvez ajouter d'autres méthodes selon les besoins du jeu
 }

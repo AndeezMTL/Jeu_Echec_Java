@@ -1,6 +1,6 @@
-package main.java.ca.mv.projet.models.pieces;
+package ca.mv.projet.models.pieces;
 
-import main.java.ca.mv.projet.models.Echiquier;
+import ca.mv.projet.models.Echiquier;
 import ca.mv.projet.models.cases.Position;
 
 public class Cavalier extends Piece {
@@ -9,32 +9,17 @@ public class Cavalier extends Piece {
         super(estBlanche);
     }
 
-    @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
-        // TODO: remplacer par le code approprié
+        Position mouvement = posDestination.substract(posCourante).abs();
 
-        int mouvementY = posDestination.getY() - posCourante.getY();
-        int mouvementX = posDestination.getX() - posCourante.getX();
-
-
-        if (
-                (mouvementX == 2 && mouvementY == 1) || (mouvementX == -2 && mouvementY == 1) ||
-
-                        (mouvementX == 2 && mouvementY == -1) || (mouvementX == -2 && mouvementY == -1) ||
-                        (mouvementX == 1 && mouvementY == 2) || (mouvementX == -1 && mouvementY == 2) ||
-                        (mouvementX == 1 && mouvementY == -2) || (mouvementX == -1 && mouvementY == -2)
-        )
-
-        {
-            if (echiquier.get);
-        }
-
-
-
-
-
-            System.out.println("peutBouger cavalier");
-
-        return true;
+        if (mouvement.equals(2, 1) || mouvement.equals(1, 2)) {
+            Piece caseOccupeePiece = echiquier.getPieceAtPosition(posDestination);
+            if (caseOccupeePiece != null) {
+                return this.peutCapturer(caseOccupeePiece);
+            }
+            System.out.println("peut Bouger cavalier");
+            return true;
+            }
+        return false;
     }
 }

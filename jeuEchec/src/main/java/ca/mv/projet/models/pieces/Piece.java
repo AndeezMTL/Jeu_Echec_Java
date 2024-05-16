@@ -1,6 +1,6 @@
-package main.java.ca.mv.projet.models.pieces;
+package ca.mv.projet.models.pieces;
 
-import main.java.ca.mv.projet.models.Echiquier;
+import ca.mv.projet.models.Echiquier;
 import ca.mv.projet.models.cases.Position;
 
 public abstract class Piece {
@@ -12,7 +12,11 @@ public abstract class Piece {
     public Piece(boolean estBlanc) {
         this.estCapturee = false;
         this.estBlanc = estBlanc;
-        this.image = this.getClass().getSimpleName() + "_" + (estBlanc ? "blanc" : "noir") + ".gif";
+        this.image = this.getClass().getSimpleName() + "_" + (estBlanc ? "blanc" : "noir") + ".png";
+    }
+
+    public void die() {
+        this.estCapturee = true;
     }
 
     public abstract boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier);
@@ -30,21 +34,23 @@ public abstract class Piece {
     }
 
     /* Code fourni dans github*/
-    protected static boolean bougerSurDiagonal(Position posCourante, Position posDestination, Echiquier echiquier) {
-        int decalSurX = Integer.compare(posDestination.getX(), posCourante.getX());
-        int decalSurY = Integer.compare(posDestination.getY(), posCourante.getY());
-        int posProchaineX = posCourante.getX() + decalSurX;
-        int posProchaineY = posCourante.getY() + decalSurY;
+    protected boolean bougerSurDiagonal(Position posCourante, Position posDestination, Echiquier echiquier) {
 
-        while (posProchaineX != posDestination.getX() && posProchaineY != posDestination.getY()){
-            if(echiquier.getCaseParPosition(posProchaineX, posProchaineY).getPiece() != null) {
+        Position mouvement = posDestination.substract(posCourante);
+        // Vérification si le mouvement est en diagonale
+        if (this.estSurDiagonal(posCourante, posDestination)) {
+            Position direction = mouvement.direction();
+            boolean invalid = false;
+            for (Position pos = posCourante; !pos.equals(posDestination); pos = pos.add(direction)) {
+                invalid = invalid || echiquier.estOccupe(pos);
+            }
+            if (!invalid) {
+                return this.peutCapturer(echiquier.getPieceAtPosition(posDestination));
+            } else {
                 return false;
             }
-            posProchaineX += decalSurX;
-            posProchaineY += decalSurY;
         }
-
-        return true;
+        return false;
     }
 
     public boolean estMemeCouleur(Piece piece) {
@@ -59,39 +65,25 @@ public abstract class Piece {
     }
 
     public boolean bougerSurOrthogonal(Position posCourante, Position posDestination, Echiquier echiquier) {
-        int decalSurX = posDestination.getX() - posCourante.getX();
-        int decalSurY = posDestination.getY() - posCourante.getY();
-        int direction = echiquier.getCaseParPosition(posCourante).getPiece().estBlanc ? -1 : 1;
-        if(decalSurX == 0) { // Pour arriver à la destination on bouge la piece sur la ligne
-            direction = decalSurY > 0 ? 1 : -1;
-            int posProchaineY = posCourante.getY();
-            posProchaineY += direction;
-            while (posProchaineY != posDestination.getY()){
-                if(echiquier.getCaseParPosition(posDestination.getX(), posProchaineY).getPiece() != null) {
-                    return false;
-                }
-                posProchaineY += direction;
+        if (posDestination.getX() == posCourante.getX() || posDestination.getY() == posCourante.getY()) {
+            Position direction = posDestination.substract(posCourante).direction();
+            boolean invalid = false;
+            for (Position pos = posCourante; !pos.equals(posDestination); pos = pos.add(direction)) {
+                invalid = invalid || echiquier.estOccupe(pos);
             }
-        } else { // Pour arriver à la destination on bouge la piece sur la colonne
-            int posProchaineX = posCourante.getX();
-            posProchaineX += direction;
-            while (posProchaineX != posDestination.getX()){
-                if(echiquier.getCaseParPosition(posProchaineX, posDestination.getY()).getPiece() != null) {
-                    return false;
-                }
-                posProchaineX += direction;
+            if (!invalid) {
+                return this.peutCapturer(echiquier.getPieceAtPosition(posDestination));
+            } else {
+                return false;
             }
         }
-        return true;
+        return false;
     }
 
-    public boolean estSurDiagonal(Position posCourante, Position posDestination){
-        int diffSurX = posDestination.getX() - posCourante.getX();
-        int diffSurY = posDestination.getY() - posCourante.getY();
-
-        return Math.abs(diffSurX) == Math.abs(diffSurY);
+    public boolean estSurDiagonal(Position posCourante, Position posDestination) {
+        Position mouvement = posDestination.substract(posCourante).abs();
+        return mouvement.getX() == mouvement.getY();
     }
-    /* --------------------------------------------------*/
 
 
 
@@ -103,5 +95,6 @@ public abstract class Piece {
                 ", image='" + image + '\'' +
                 '}';
     }
+
 }
 

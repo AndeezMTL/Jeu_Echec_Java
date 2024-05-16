@@ -1,6 +1,6 @@
 package ca.mv.projet.models.cases;
 
-import main.java.ca.mv.projet.models.pieces.Piece;
+import ca.mv.projet.models.pieces.Piece;
 import ca.mv.projet.models.cases.Position;
 
 public abstract class Case {
