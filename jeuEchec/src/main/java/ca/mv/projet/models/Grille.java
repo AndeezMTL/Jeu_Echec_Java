@@ -34,14 +34,18 @@ public class Grille {
     }
 
     public ImageView creerImageView(int colonne, int ligne, StackPane stackPane) {
-        ImageView imgPieces = new ImageView((getClass().getResource("ca/mv/projet/PNG" +
-                echiquier.getCaseParPosition(ligne, colonne).getPiece()
-                        .getImage()).toExternalForm()));
-        stackPane.getChildren().add(imgPieces);
-        imgPieces.fitWidthProperty().bind(stackPane.widthProperty().subtract(8));
-        imgPieces.fitHeightProperty().bind(stackPane.heightProperty().subtract(8));
+        Case caseActuelle = echiquier.getCaseParPosition(ligne, colonne);
+        if (caseActuelle != null && caseActuelle.getPiece() != null) {
+            ImageView imgPieces = new ImageView((getClass().getResource("ca/mv/projet/PNG" +
+                    echiquier.getCaseParPosition(ligne, colonne).getPiece()
+                            .getImage()).toExternalForm()));
+            stackPane.getChildren().add(imgPieces);
+            imgPieces.fitWidthProperty().bind(stackPane.widthProperty().subtract(8));
+            imgPieces.fitHeightProperty().bind(stackPane.heightProperty().subtract(8));
 
-        return imgPieces;
+            return imgPieces;
+        }
+        return null;
     }
 
     // TODO: ajouter les méthodes manquantes

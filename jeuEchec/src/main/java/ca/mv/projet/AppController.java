@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,6 +24,8 @@ public class AppController implements Initializable {
         Position pTo = null;
         jeu.executeMove(pFrom, pTo);
     }
+
+    @FXML private void userClick(MouseEvent event) {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

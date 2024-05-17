@@ -5,14 +5,14 @@ import ca.mv.projet.models.cases.Position;
 
 public abstract class Piece {
     protected final boolean estBlanc;
-    protected boolean estCapturee = false;
+    protected boolean estCapturee;
 //commentaire
     protected String image;
 
     public Piece(boolean estBlanc) {
         this.estCapturee = false;
         this.estBlanc = estBlanc;
-        this.image = this.getClass().getSimpleName() + "_" + (estBlanc ? "blanc" : "noir") + ".png";
+        this.image = this.getClass().getSimpleName() + (estBlanc ? "Blanc" : "") + ".png";
     }
 
     public void die() {
