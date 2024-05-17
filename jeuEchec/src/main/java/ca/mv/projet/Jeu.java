@@ -51,6 +51,7 @@ public class Jeu {
             ResultatManche manche = executeMove(pFrom, pTo);
             switch (manche){
                 case INVALIDE -> {
+                    System.out.println("Le mouvement est invalide");
 
                 }
                 case DEPLACEMENT -> {
@@ -60,6 +61,7 @@ public class Jeu {
                     tourDeJeux++;
                 }
                 case ECHEC -> {
+                    System.out.println("Échec et math");
 
                 }
 //                case null, default -> {
