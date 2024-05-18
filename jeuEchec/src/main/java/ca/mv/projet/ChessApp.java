@@ -13,13 +13,12 @@ public class ChessApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ChessApp.class.getResource("ca/mv/projet/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ChessApp.class.getResource("/ca/mv/projet/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Utilities.SCENE_WIDTH, Utilities.SCENE_HIEGHT);
         AppController appController = fxmlLoader.getController();
         Echiquier echiquier = new Echiquier();
         Grille grille = new Grille(echiquier);
         grille.setAppController(appController);
-        appController.setGrille(grille);
         stage.setTitle(Utilities.APP_TITLE);
         stage.setScene(scene);
         stage.show();

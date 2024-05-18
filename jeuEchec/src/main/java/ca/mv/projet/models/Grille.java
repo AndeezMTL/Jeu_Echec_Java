@@ -14,12 +14,28 @@ import java.net.URL;
 public class Grille {
 
     private final Echiquier echiquier;
-    @FXML GridPane grid;
-    @FXML AnchorPane boardAnchorPane;
+    @FXML private GridPane grid;
+    @FXML private AnchorPane boardAnchorPane;
     private AppController appController;
 
     public void setAppController(AppController appController) {
         this.appController = appController;
+    }
+
+    public void setGrid(GridPane grid) {
+        this.grid = grid;
+    }
+
+    public GridPane getGrid() {
+        return grid;
+    }
+
+    public void setBoardAnchorPane(AnchorPane boardAnchorPane) {
+        this.boardAnchorPane = boardAnchorPane;
+    }
+
+    public Echiquier getEchiquier() {
+        return echiquier;
     }
 
     public Grille(Echiquier echiquier) {
@@ -27,20 +43,19 @@ public class Grille {
         creerGrille();
     }
 
-    private void creerGrille() {
+    public void creerGrille() {
         for (int i = 0; i < echiquier.plateau.length; i++) {
             for (int j = 0; j < echiquier.plateau[i].length; j++) {
-                final int indexX = i;
-                final int indexY = j;
                 StackPane stackPane = new StackPane();
                 stackPane.getStyleClass().add(echiquier.plateau[i][j].isEstCaseBlanche() ? "white-square" : "black-square" );
                 creerImageView(i, j, stackPane);
                 stackPane.setOnMouseClicked(event -> {
-                    appController.registerUserClick(event,indexX ,indexY);
+                    appController.registerUserClick(event);
                 });
-                if (boardAnchorPane != null) {
-                    if (grid != null) {grid.add(stackPane, j, i);}
+                if (grid != null) {
+                    grid.add(stackPane, j, i);
                 }
+
             }
         }
     }
@@ -61,5 +76,5 @@ public class Grille {
         return null;
     }
 
-    // TODO: ajouter les méthodes manquantes
+
 }

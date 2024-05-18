@@ -29,7 +29,7 @@ public class Echiquier {
         }
     }
 
-    private void placerPiecesInitSurPlateau() {
+    public void placerPiecesInitSurPlateau() {
         // Initialisation des pièces sur le plateau
         // Placer les pions
         placerPions();

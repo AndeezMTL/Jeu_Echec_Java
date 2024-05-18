@@ -1,8 +1,8 @@
 .white-square {
-    -fx-fill: #f0d9b5; /* Couleur claire */
+    -fx-background-color: #f0d9b5; /* Couleur claire */
 }
 
 /* Style des cases noires */
 .black-square {
-    -fx-fill: #b58863; /* Couleur foncée */
+    -fx-background-color: #b58863; /* Couleur foncée */
 }
