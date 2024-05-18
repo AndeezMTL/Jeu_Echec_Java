@@ -41,6 +41,7 @@ public class Jeu {
         this.j1 = new Joueur(Utilities.j1_name, true);
         this.j2 = new Joueur(Utilities.j2_name, false);
         this.grille = new Grille(this.echiquier);
+        this.tourDeJeux = 0;
     }
 
     private boolean estTourDesBlanc() {
@@ -49,6 +50,7 @@ public class Jeu {
 
     public void mancheJouee(Position pFrom, Position pTo) {
         if (estTourDesBlanc() == echiquier.getPieceAtPosition(pFrom).isEstBlanc()) {
+            System.out.println("yo");
             ResultatManche manche = executeMove(pFrom, pTo);
             switch (manche){
                 case INVALIDE : {
@@ -93,9 +95,6 @@ public class Jeu {
         return ResultatManche.INVALIDE;
     }
 
-    public AppController setAppController(AppController appController) {
-        return appController;
-    }
 
 }
 

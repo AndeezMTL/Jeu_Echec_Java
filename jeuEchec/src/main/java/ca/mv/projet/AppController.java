@@ -30,14 +30,14 @@ public class AppController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.jeu = new Jeu();
         echiquier = jeu.getEchiquier();
-        this.grille = new Grille(echiquier);
+        this.grille = jeu.getGrille();
         this.grille.setAppController(this);
         this.grille.setGrid(grid);
         this.grille.setBoardAnchorPane(boardAnchorPane);
         j1Label.setText(Utilities.j1_name);
         j2Label.setText(Utilities.j2_name);
-
         this.grille.creerGrille();
+
     }
 
     @FXML public void registerUserClick(MouseEvent event) {

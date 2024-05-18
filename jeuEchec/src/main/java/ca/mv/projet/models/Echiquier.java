@@ -11,7 +11,7 @@ import ca.mv.projet.models.pieces.*;
 public class Echiquier {
 
 //    public boolean get;
-    final protected Case[][] plateau;
+    final public Case[][] plateau;
 
     public Echiquier() {
         this.plateau = new Case[Utilities.NB_CASES_COTE][Utilities.NB_CASES_COTE]; // Échiquier 8x8

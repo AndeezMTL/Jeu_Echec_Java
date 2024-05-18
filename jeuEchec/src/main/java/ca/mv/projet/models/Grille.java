@@ -1,5 +1,6 @@
 package ca.mv.projet.models;
 
+import ca.mv.projet.models.cases.Position;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -47,22 +48,23 @@ public class Grille {
         for (int i = 0; i < echiquier.plateau.length; i++) {
             for (int j = 0; j < echiquier.plateau[i].length; j++) {
                 StackPane stackPane = new StackPane();
-                stackPane.getStyleClass().add(echiquier.plateau[i][j].isEstCaseBlanche() ? "white-square" : "black-square" );
                 creerImageView(i, j, stackPane);
                 stackPane.setOnMouseClicked(event -> {
                     appController.registerUserClick(event);
-                    System.out.println("yo");
                 });
                 if (grid != null) {
-                    grid.add(stackPane, j, i);
+                    grid.add(stackPane, i, j);
                 }
-
             }
         }
     }
 
     public ImageView creerImageView(int colonne, int ligne, StackPane stackPane) {
         Case caseActuelle = echiquier.getCaseParPosition(ligne, colonne);
+        stackPane.getChildren().clear();
+        Position pos = new Position(ligne, colonne);
+        stackPane.getStyleClass().setAll(echiquier.getCaseParPosition(pos).isEstCaseBlanche() ? "white-square" : "black-square" );
+
         if (caseActuelle != null && caseActuelle.getPiece() != null) {
             String path = "ca/mv/projet/PNG/" + echiquier.getCaseParPosition(ligne, colonne).getPiece().getImage();
             URL imageUrl = getClass().getResource("/" + path);
