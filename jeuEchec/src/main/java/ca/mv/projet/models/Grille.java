@@ -51,6 +51,7 @@ public class Grille {
                 creerImageView(i, j, stackPane);
                 stackPane.setOnMouseClicked(event -> {
                     appController.registerUserClick(event);
+                    System.out.println("yo");
                 });
                 if (grid != null) {
                     grid.add(stackPane, j, i);

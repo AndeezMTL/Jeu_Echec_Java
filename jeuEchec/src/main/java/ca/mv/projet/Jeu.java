@@ -7,6 +7,7 @@ import ca.mv.projet.models.cases.Position;
 import ca.mv.projet.models.pieces.Piece;
 import ca.mv.projet.models.pieces.Pion;
 import ca.mv.projet.models.pieces.Roi;
+import ca.mv.projet.AppController;
 
 public class Jeu {
     // TODO: ajouter le code manquant
@@ -91,4 +92,10 @@ public class Jeu {
         }
         return ResultatManche.INVALIDE;
     }
+
+    public AppController setAppController(AppController appController) {
+        return appController;
+    }
+
 }
+

@@ -1,5 +1,6 @@
 package ca.mv.projet;
 
+import ca.mv.projet.models.Echiquier;
 import ca.mv.projet.models.Grille;
 import ca.mv.projet.models.cases.Position;
 import javafx.event.ActionEvent;
@@ -22,26 +23,21 @@ public class AppController implements Initializable {
     @FXML private AnchorPane boardAnchorPane;
     @FXML private Label j1Label;
     @FXML private Label j2Label;
+    private  Echiquier echiquier;
     private Position posCourante = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.jeu = new Jeu();
-        this.grille = new Grille(jeu.getEchiquier());
+        echiquier = jeu.getEchiquier();
+        this.grille = new Grille(echiquier);
         this.grille.setAppController(this);
         this.grille.setGrid(grid);
         this.grille.setBoardAnchorPane(boardAnchorPane);
         j1Label.setText(Utilities.j1_name);
         j2Label.setText(Utilities.j2_name);
 
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
-                StackPane cases = new StackPane();
-                cases.setStyle((y + x) % 2 == 0 ? "-fx-background-color: #f0d9b5;" : "-fx-background-color: #b58863;");
-                cases.setOnMouseClicked(event -> registerUserClick(event));
-                grid.add(cases, x, y);
-            }
-        }
+        this.grille.creerGrille();
     }
 
     @FXML public void registerUserClick(MouseEvent event) {
@@ -64,7 +60,7 @@ public class AppController implements Initializable {
         }
     }
 
-    private void refreshBoard() {
+    public void refreshBoard() {
         grid.getChildren().clear();
         grille.creerGrille();
     }
