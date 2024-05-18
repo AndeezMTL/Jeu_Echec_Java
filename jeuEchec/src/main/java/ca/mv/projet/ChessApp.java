@@ -1,10 +1,11 @@
 package ca.mv.projet;
 
+import ca.mv.projet.models.Echiquier;
+import ca.mv.projet.models.Grille;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Application;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -12,13 +13,18 @@ public class ChessApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // TODO: remplacer par le code approprié
-        FXMLLoader fxmlLoader = new FXMLLoader(ChessApp.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ChessApp.class.getResource("ca/mv/projet/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Utilities.SCENE_WIDTH, Utilities.SCENE_HIEGHT);
+        AppController appController = fxmlLoader.getController();
+        Echiquier echiquier = new Echiquier();
+        Grille grille = new Grille(echiquier);
+        grille.setAppController(appController);
+        appController.setGrille(grille);
         stage.setTitle(Utilities.APP_TITLE);
         stage.setScene(scene);
         stage.show();
     }
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

@@ -50,23 +50,23 @@ public class Jeu {
         if (estTourDesBlanc() == echiquier.getPieceAtPosition(pFrom).isEstBlanc()) {
             ResultatManche manche = executeMove(pFrom, pTo);
             switch (manche){
-                case INVALIDE -> {
-
+                case INVALIDE : {
+                    break;
                 }
-                case DEPLACEMENT -> {
+                case DEPLACEMENT :
+                case CAPTURE : {
                     tourDeJeux++;
+                    break;
                 }
-                case CAPTURE -> {
-                    tourDeJeux++;
+                case ECHEC : {
+                    System.out.println("Fin de partie. Le roi " + (echiquier.getPieceAtPosition(pTo).isEstBlanc() ? "Blanc" : "Noir") + " à été capturé.");
+                    break;
                 }
-                case ECHEC -> {
 
-                }
-//                case null, default -> {
-//                    throw new Exception("sorcellerie");
-//                }
             }
 
+        } else {
+            System.out.println("Ce n'est pas votre tour");
         }
     }
 
@@ -85,6 +85,8 @@ public class Jeu {
                 }
                 echiquier.setCaseParPosition(pFrom, pTo);
                 return ResultatManche.DEPLACEMENT;
+            } else {
+                return ResultatManche.INVALIDE;
             }
         }
         return ResultatManche.INVALIDE;
