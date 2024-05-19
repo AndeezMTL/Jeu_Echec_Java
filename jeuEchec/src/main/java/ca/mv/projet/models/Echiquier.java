@@ -49,55 +49,55 @@ public class Echiquier {
         for(int i = Utilities.PREMIERE_POS; i < Utilities.NB_CASES_COTE; i++){
             Position positionInitialeBlanc = new Position(1, i);
             Position positionInitialeNoir = new Position(Utilities.DERNIERE_POS - 1, i);
-            plateau[1][i] = new CaseOccupee(positionInitialeBlanc,
+            plateau[i][1] = new CaseOccupee(positionInitialeBlanc,
                     new Pion(false, positionInitialeBlanc)); // Pion noir
-            plateau[Utilities.DERNIERE_POS - 1][i] = new CaseOccupee(positionInitialeNoir,
+            plateau[i][Utilities.DERNIERE_POS - 1] = new CaseOccupee(positionInitialeNoir,
                     new Pion(true, positionInitialeNoir)); // Pion blanc
         }
     }
 
     public void placerFous(){
-        plateau[Utilities.PREMIERE_POS][2] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, 2),
+        plateau[2][Utilities.PREMIERE_POS] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, 2),
                 new Fou(false)); // Fou noir
-        plateau[Utilities.PREMIERE_POS][Utilities.DERNIERE_POS - 2] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, Utilities.DERNIERE_POS - 2),
+        plateau[Utilities.DERNIERE_POS - 2][Utilities.PREMIERE_POS] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, Utilities.DERNIERE_POS - 2),
                 new Fou(false)); // Fou noir
-        plateau[Utilities.DERNIERE_POS][2] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, 2),
+        plateau[2][Utilities.DERNIERE_POS] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, 2),
                 new Fou(true)); // Fou blanc
-        plateau[Utilities.DERNIERE_POS][Utilities.DERNIERE_POS - 2] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, Utilities.DERNIERE_POS - 2),
+        plateau[Utilities.DERNIERE_POS - 2][Utilities.DERNIERE_POS] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, Utilities.DERNIERE_POS - 2),
                 new Fou(true)); // Fou blanc
     }
 
     public void placerRoi(){
-        plateau[Utilities.PREMIERE_POS][4] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, 4),
+        plateau[4][Utilities.PREMIERE_POS] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, 4),
                 new Roi(false)); // Roi noir en D1
-        plateau[Utilities.DERNIERE_POS][4] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, 4),
+        plateau[4][Utilities.DERNIERE_POS] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, 4),
                 new Roi(true)); // Roi blanc en D8
     }
 
     public void placerReine(){
-        plateau[Utilities.PREMIERE_POS][3] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, 3),
+        plateau[3][Utilities.PREMIERE_POS] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, 3),
                 new Reine(false)); // Reine noire en E1
-        plateau[Utilities.DERNIERE_POS][3] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, 3),
+        plateau[3][Utilities.DERNIERE_POS] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, 3),
                 new Reine(true)); // Reine blanche en E8
     }
 
     public void placerCavaliers() {
-        plateau[Utilities.PREMIERE_POS][1] = new CaseOccupee(new Position(Utilities.PREMIERE_POS,1),
+        plateau[1][Utilities.PREMIERE_POS] = new CaseOccupee(new Position(Utilities.PREMIERE_POS,1),
                 new Cavalier(false)); // Cavalier noir
-        plateau[Utilities.PREMIERE_POS][Utilities.DERNIERE_POS - 1] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, Utilities.DERNIERE_POS - 1),
+        plateau[Utilities.DERNIERE_POS - 1][Utilities.PREMIERE_POS] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, Utilities.DERNIERE_POS - 1),
                 new Cavalier(false)); // Cavalier noir
-        plateau[Utilities.DERNIERE_POS][1] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, 1),
+        plateau[1][Utilities.DERNIERE_POS] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, 1),
                 new Cavalier(true)); // Cavalier blanc
-        plateau[Utilities.DERNIERE_POS][Utilities.DERNIERE_POS - 1] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, Utilities.DERNIERE_POS - 1),
+        plateau[Utilities.DERNIERE_POS - 1][Utilities.DERNIERE_POS] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, Utilities.DERNIERE_POS - 1),
                 new Cavalier(true)); // Cavalier blanc
     }
     
     public void placerTours(){
         plateau[Utilities.PREMIERE_POS][Utilities.PREMIERE_POS] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, Utilities.PREMIERE_POS),
                 new Tour(false)); // Tour noir en A1
-        plateau[Utilities.PREMIERE_POS][Utilities.DERNIERE_POS] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, Utilities.DERNIERE_POS),
+        plateau[Utilities.DERNIERE_POS][Utilities.PREMIERE_POS] = new CaseOccupee(new Position(Utilities.PREMIERE_POS, Utilities.DERNIERE_POS),
                 new Tour(false)); // Tour noir en H1
-        plateau[Utilities.DERNIERE_POS][Utilities.PREMIERE_POS] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, Utilities.PREMIERE_POS),
+        plateau[Utilities.PREMIERE_POS][Utilities.DERNIERE_POS] = new CaseOccupee(new Position(Utilities.DERNIERE_POS, Utilities.PREMIERE_POS),
                 new Tour(true)); // Tour blanche en A8
         plateau[Utilities.DERNIERE_POS][Utilities.DERNIERE_POS] =
                 new CaseOccupee(new Position(Utilities.DERNIERE_POS, Utilities.DERNIERE_POS),

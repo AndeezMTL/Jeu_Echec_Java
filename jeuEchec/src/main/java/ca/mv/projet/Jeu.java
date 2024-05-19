@@ -3,15 +3,11 @@ package ca.mv.projet;
 import ca.mv.projet.models.Grille;
 import ca.mv.projet.models.Joueur;
 import ca.mv.projet.models.Echiquier;
-import ca.mv.projet.models.cases.Case;
 import ca.mv.projet.models.cases.Position;
 import ca.mv.projet.models.pieces.Piece;
-import ca.mv.projet.models.pieces.Pion;
 import ca.mv.projet.models.pieces.Roi;
-import ca.mv.projet.AppController;
 
 public class Jeu {
-    // TODO: ajouter le code manquant
     private Echiquier echiquier;
     private Joueur j1;
     private Joueur j2;
@@ -36,8 +32,6 @@ public class Jeu {
     }
 
     public Jeu() {
-        // TODO: ajouter le code et les paramètres appropriés
-
         this.echiquier = new Echiquier();
         this.j1 = new Joueur(Utilities.j1_name, true);
         this.j2 = new Joueur(Utilities.j2_name, false);
@@ -50,36 +44,68 @@ public class Jeu {
     }
 
     public void mancheJouee(Position pFrom, Position pTo) {
-        if (estTourDesBlanc() && echiquier.getPieceAtPosition(pFrom).isEstBlanc()) {
-            ResultatManche manche = executeMove(pFrom, pTo);
-            switch (manche){
-                case INVALIDE : {
-                    break;
-                }
-                case DEPLACEMENT :
-                case CAPTURE : {
-                    tourDeJeux++;
-                    break;
-                }
-                case ECHEC : {
-                    System.out.println("Fin de partie. Le roi " + (echiquier.getPieceAtPosition(pTo).isEstBlanc() ? "Blanc" : "Noir") + " à été capturé.");
-                    break;
-                }
+//        if (estTourDesBlanc() && echiquier.getPieceAtPosition(pFrom).isEstBlanc()) {
+//            ResultatManche manche = executeMove(pFrom, pTo);
+//            switch (manche){
+//                case INVALIDE : {
+//                    break;
+//                }
+//                case DEPLACEMENT :
+//                case CAPTURE : {
+//                    tourDeJeux++;
+//                    break;
+//                }
+//                case ECHEC : {
+//                    System.out.println("Fin de partie. Le roi " + (echiquier.getPieceAtPosition(pTo).isEstBlanc() ? "Blanc" : "Noir") + " à été capturé.");
+//                    break;
+//                }
+//
+//            }
+//
+//        } else {
+//            System.out.println("Ce n'est pas votre tour");
+//        }
+        System.out.println("mancheJouee called with positions: " + pFrom + " to " + pTo);
 
-            }
+        Piece pieceFrom = echiquier.getPieceAtPosition(pFrom);
+        if (pieceFrom == null) {
+            System.out.println("No piece at the starting position: " + pFrom);
+            return;
+        }
 
-        } else {
-            System.out.println("Ce n'est pas votre tour");
+        if (estTourDesBlanc() != pieceFrom.isEstBlanc()) {
+            System.out.println("It's not the turn of " + (pieceFrom.isEstBlanc() ? "White" : "Black"));
+            return;
+        }
+
+        System.out.println("Attempting to move " + pieceFrom.getClass().getSimpleName() + " from " + pFrom + " to " + pTo);
+
+        ResultatManche manche = executeMove(pFrom, pTo);
+        switch (manche) {
+            case INVALIDE:
+                System.out.println("Move invalid from " + pFrom + " to " + pTo);
+                break;
+            case DEPLACEMENT:
+            case CAPTURE:
+                System.out.println("Move successful from " + pFrom + " to " + pTo);
+                tourDeJeux++;
+                grille.creerGrille(); // Ensure the UI updates the grid
+                break;
+            case ECHEC:
+                System.out.println("Game over. The " + (pieceFrom.isEstBlanc() ? "White" : "Black") + " king was captured.");
+                break;
         }
     }
 
     public ResultatManche executeMove(Position pFrom, Position pTo) {
+        Piece pieceCourante = echiquier.getPieceAtPosition(pFrom);
+        Piece pieceDestination = echiquier.getPieceAtPosition(pTo);
+
         if (echiquier.estOccupe(pFrom)) {
             if (echiquier.estValidMouve(pFrom, pTo)) {
-                Piece pieceBouffe = echiquier.getPieceAtPosition(pTo);
-                if (pieceBouffe != null) {
-                    pieceBouffe.die();
-                    if (pieceBouffe.getClass() == Roi.class) {
+                if (pieceDestination != null) {
+                    pieceDestination.die();
+                    if (pieceDestination.getClass() == Roi.class) {
                         // win
                         return ResultatManche.ECHEC;
                     }

@@ -63,13 +63,12 @@ public class Grille {
     }
 
     public ImageView creerImageView(int colonne, int ligne, StackPane stackPane) {
-        Case caseActuelle = echiquier.getCaseParPosition(ligne, colonne);
+        Case caseActuelle = echiquier.getCaseParPosition(colonne, ligne);
         stackPane.getChildren().clear();
-        Position pos = new Position(ligne, colonne);
-        stackPane.getStyleClass().setAll(echiquier.getCaseParPosition(pos).isEstCaseBlanche() ? "white-square" : "black-square" );
+        stackPane.getStyleClass().setAll((colonne + ligne) % 2 == 0? "white-square" : "black-square");
 
         if (caseActuelle != null && caseActuelle.getPiece() != null) {
-            String path = "ca/mv/projet/PNG/" + echiquier.getCaseParPosition(ligne, colonne).getPiece().getImage();
+            String path = "ca/mv/projet/PNG/" + echiquier.getCaseParPosition(colonne, ligne).getPiece().getImage();
             URL imageUrl = getClass().getResource("/" + path);
             if (imageUrl != null) {
                 ImageView imgPieces = new ImageView(imageUrl.toExternalForm());

@@ -49,7 +49,6 @@ public class AppController implements Initializable {
             positionDepart = positionClicked;
             if (jeu.getEchiquier().estOccupe(positionDepart)) {
                 posCourante = positionDepart;
-                System.out.println(positionDepart);
             }
 
         } else {
