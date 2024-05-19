@@ -26,6 +26,7 @@ public class AppController implements Initializable {
     @FXML private Label j2Label;
     private  Echiquier echiquier;
     private Position posCourante = null;
+    private Position positionDepart;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,25 +42,23 @@ public class AppController implements Initializable {
 
     }
 
-    @FXML public void registerUserClick(MouseEvent event) {
-        StackPane clickedPane = (StackPane) event.getSource();
-        int x = GridPane.getColumnIndex(clickedPane);
-        int y = GridPane.getRowIndex(clickedPane);
-        Position positionDepart = new Position(x, y);
-
+    @FXML public void registerUserClick(MouseEvent event, int x, int y) {
+        Position positionClicked = new Position(x, y);
+        System.out.println(positionClicked);
         if (posCourante == null) {
+            positionDepart = positionClicked;
             if (jeu.getEchiquier().estOccupe(positionDepart)) {
                 posCourante = positionDepart;
-                System.out.println(echiquier.getPieceAtPosition(posCourante).isEstBlanc());
-                System.out.println(jeu.estTourDesBlanc());
+                System.out.println(positionDepart);
             }
-            else {
-                Position positionDestination = positionDepart;
-                if (!positionDepart.equals(positionDestination)){
-                    jeu.mancheJouee(posCourante, positionDestination);
-                }
-                posCourante = null;
+
+        } else {
+            Position positionDestination = positionClicked;
+            System.out.println(positionDestination);
+            if (!positionDepart.equals(positionDestination)){
+                jeu.mancheJouee(posCourante, positionDestination);
             }
+            posCourante = null;
         }
     }
 
@@ -68,7 +67,7 @@ public class AppController implements Initializable {
         grille.creerGrille();
     }
 
-    public void setGrille(Grille grille) {
-        this.grille = grille;
+    public void setGrid(GridPane grid) {
+        this.grid = grid;
     }
 }

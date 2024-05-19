@@ -4,6 +4,7 @@ import ca.mv.projet.models.Echiquier;
 import ca.mv.projet.models.Grille;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import java.io.IOException;
@@ -16,8 +17,8 @@ public class ChessApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(ChessApp.class.getResource("/ca/mv/projet/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Utilities.SCENE_WIDTH, Utilities.SCENE_HIEGHT);
         AppController appController = fxmlLoader.getController();
-
-
+        GridPane grid = (GridPane) scene.getRoot().lookup("#grid");
+        appController.setGrid(grid);
         stage.setTitle(Utilities.APP_TITLE);
         stage.setScene(scene);
         stage.show();

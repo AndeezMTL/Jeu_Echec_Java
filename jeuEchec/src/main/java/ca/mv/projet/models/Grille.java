@@ -40,7 +40,6 @@ public class Grille {
     }
 
 
-
     public Grille(Echiquier echiquier) {
         this.echiquier = echiquier;
         creerGrille();
@@ -49,10 +48,12 @@ public class Grille {
     public void creerGrille() {
         for (int i = 0; i < echiquier.plateau.length; i++) {
             for (int j = 0; j < echiquier.plateau[i].length; j++) {
+                final int indexX = i;
+                final int indexY = j;
                 StackPane stackPane = new StackPane();
                 creerImageView(i, j, stackPane);
                 stackPane.setOnMouseClicked(event -> {
-                    appController.registerUserClick(event);
+                    appController.registerUserClick(event, indexX, indexY);
                 });
                 if (grid != null) {
                     grid.add(stackPane, i, j);

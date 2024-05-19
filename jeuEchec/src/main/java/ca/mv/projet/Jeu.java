@@ -50,10 +50,7 @@ public class Jeu {
     }
 
     public void mancheJouee(Position pFrom, Position pTo) {
-        System.out.println(estTourDesBlanc());
-        System.out.println(echiquier.getPieceAtPosition(pFrom).isEstBlanc());
-        if (estTourDesBlanc() == echiquier.getPieceAtPosition(pFrom).isEstBlanc()) {
-            System.out.println("yo");
+        if (estTourDesBlanc() && echiquier.getPieceAtPosition(pFrom).isEstBlanc()) {
             ResultatManche manche = executeMove(pFrom, pTo);
             switch (manche){
                 case INVALIDE : {
