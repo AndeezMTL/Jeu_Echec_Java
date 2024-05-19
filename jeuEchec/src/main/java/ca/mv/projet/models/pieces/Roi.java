@@ -5,14 +5,26 @@ import ca.mv.projet.models.cases.Position;
 
 public class Roi extends Piece {
 
-    public Roi(boolean estBlanche) {
-        super(estBlanche);
+    public Roi(boolean estBlanc) {
+        super(estBlanc);
     }
 
     @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
-        Position mouvement = posCourante.substract(posDestination);
-        return mouvement.equals(mouvement.direction()) && echiquier.getPieceAtPosition(posDestination).isEstBlanc() != this.isEstBlanc();
+        if ((posDestination.getX() == posCourante.getX() + 1 || posDestination.getX() == posCourante.getX() - 1 || posDestination.getY() == posCourante.getY() + 1 || posDestination.getY() == posCourante.getY() - 1) || (this.estSurDiagonal(posCourante, posDestination)) ) {
+            Position direction = posDestination.substract(posCourante).direction();
+            Position pos = posCourante.add(direction);
+            boolean invalid = false;
+
+            while (!pos.equals(posDestination)) {
+                if (echiquier.estOccupe(pos)) {
+                    return invalid;
+                }
+                pos = pos.add(direction);
+            }
+            return this.peutCapturer(echiquier.getPieceAtPosition(posDestination));
+        }
+        return false;
     }
 }
 

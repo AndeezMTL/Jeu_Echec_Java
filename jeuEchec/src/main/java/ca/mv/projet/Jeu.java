@@ -107,6 +107,14 @@ public class Jeu {
                     pieceDestination.die();
                     if (pieceDestination.getClass() == Roi.class) {
                         // win
+                        grille.creerGrille();
+                        echiquier.setCaseParPosition(pFrom, pTo);
+                        if (pieceDestination.isEstBlanc() && pieceDestination.isEstCapturee())
+                        {
+                            j1.ajouterPieceCapturee(pieceDestination);
+                        } else if (!pieceDestination.isEstBlanc() && pieceDestination.isEstCapturee()) {
+                            j2.ajouterPieceCapturee(pieceDestination);
+                        }
                         return ResultatManche.ECHEC;
                     }
                     grille.creerGrille();

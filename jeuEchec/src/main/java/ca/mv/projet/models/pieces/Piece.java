@@ -35,23 +35,24 @@ public abstract class Piece {
 
     /* Code fourni dans github*/
     protected boolean bougerSurDiagonal(Position posCourante, Position posDestination, Echiquier echiquier) {
+        boolean invalid = false;
 
-        Position mouvement = posDestination.substract(posCourante);
-        // Vérification si le mouvement est en diagonale
         if (this.estSurDiagonal(posCourante, posDestination)) {
-            Position direction = mouvement.direction();
-            boolean invalid = false;
-            for (Position pos = posCourante; !pos.equals(posDestination); pos = pos.add(direction)) {
-                invalid = invalid || echiquier.estOccupe(pos);
+            Position direction = posDestination.substract(posCourante).direction();
+            Position pos = posCourante.add(direction);
+
+            while (!pos.equals(posDestination)) {
+                if (echiquier.estOccupe(pos)) {
+                    return invalid;
+                }
+                pos = pos.add(direction);
             }
-            if (!invalid) {
-                return this.peutCapturer(echiquier.getPieceAtPosition(posDestination));
-            } else {
-                return false;
-            }
+            return this.peutCapturer(echiquier.getPieceAtPosition(posDestination));
         }
         return false;
     }
+
+
 
     public boolean estMemeCouleur(Piece piece) {
         return estBlanc == piece.estBlanc;
@@ -67,15 +68,16 @@ public abstract class Piece {
     public boolean bougerSurOrthogonal(Position posCourante, Position posDestination, Echiquier echiquier) {
         if (posDestination.getX() == posCourante.getX() || posDestination.getY() == posCourante.getY()) {
             Position direction = posDestination.substract(posCourante).direction();
+            Position pos = posCourante.add(direction);
             boolean invalid = false;
-            for (Position pos = posCourante; !pos.equals(posDestination); pos = pos.add(direction)) {
-                invalid = invalid || echiquier.estOccupe(pos);
+
+            while (!pos.equals(posDestination)) {
+                if (echiquier.estOccupe(pos)) {
+                    return invalid;
+                }
+                pos = pos.add(direction);
             }
-            if (!invalid) {
-                return this.peutCapturer(echiquier.getPieceAtPosition(posDestination));
-            } else {
-                return false;
-            }
+            return this.peutCapturer(echiquier.getPieceAtPosition(posDestination));
         }
         return false;
     }
