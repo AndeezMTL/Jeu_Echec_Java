@@ -1,6 +1,7 @@
 package ca.mv.projet.models;
 
 import ca.mv.projet.models.cases.Position;
+import ca.mv.projet.models.pieces.Piece;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -8,7 +9,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import ca.mv.projet.models.cases.Case;
 import ca.mv.projet.AppController;
-
 import java.net.URL;
 
 
@@ -38,6 +38,8 @@ public class Grille {
     public Echiquier getEchiquier() {
         return echiquier;
     }
+
+
 
     public Grille(Echiquier echiquier) {
         this.echiquier = echiquier;

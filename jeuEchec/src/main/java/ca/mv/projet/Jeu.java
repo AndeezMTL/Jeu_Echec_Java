@@ -3,6 +3,7 @@ package ca.mv.projet;
 import ca.mv.projet.models.Grille;
 import ca.mv.projet.models.Joueur;
 import ca.mv.projet.models.Echiquier;
+import ca.mv.projet.models.cases.Case;
 import ca.mv.projet.models.cases.Position;
 import ca.mv.projet.models.pieces.Piece;
 import ca.mv.projet.models.pieces.Pion;
@@ -44,11 +45,13 @@ public class Jeu {
         this.tourDeJeux = 0;
     }
 
-    private boolean estTourDesBlanc() {
+    public boolean estTourDesBlanc() {
         return (this.tourDeJeux % 2) == 0;
     }
 
     public void mancheJouee(Position pFrom, Position pTo) {
+        System.out.println(estTourDesBlanc());
+        System.out.println(echiquier.getPieceAtPosition(pFrom).isEstBlanc());
         if (estTourDesBlanc() == echiquier.getPieceAtPosition(pFrom).isEstBlanc()) {
             System.out.println("yo");
             ResultatManche manche = executeMove(pFrom, pTo);
@@ -83,6 +86,7 @@ public class Jeu {
                         // win
                         return ResultatManche.ECHEC;
                     }
+                    grille.creerGrille();
                     echiquier.setCaseParPosition(pFrom, pTo);
                     return ResultatManche.CAPTURE;
                 }

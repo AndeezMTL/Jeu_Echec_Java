@@ -12,7 +12,6 @@ public class Reine extends Piece {
 
     @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
-        // Vérifie si le mouvement est valide pour une tour ou un fou
         return bougerSurDiagonal(posCourante, posDestination, echiquier) || bougerSurOrthogonal(posCourante, posDestination, echiquier);
     }
 }

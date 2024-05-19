@@ -6,6 +6,7 @@ import ca.mv.projet.models.cases.Position;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -49,6 +50,8 @@ public class AppController implements Initializable {
         if (posCourante == null) {
             if (jeu.getEchiquier().estOccupe(positionDepart)) {
                 posCourante = positionDepart;
+                System.out.println(echiquier.getPieceAtPosition(posCourante).isEstBlanc());
+                System.out.println(jeu.estTourDesBlanc());
             }
             else {
                 Position positionDestination = positionDepart;

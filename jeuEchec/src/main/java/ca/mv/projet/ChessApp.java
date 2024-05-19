@@ -17,6 +17,7 @@ public class ChessApp extends Application {
         Scene scene = new Scene(fxmlLoader.load(), Utilities.SCENE_WIDTH, Utilities.SCENE_HIEGHT);
         AppController appController = fxmlLoader.getController();
 
+
         stage.setTitle(Utilities.APP_TITLE);
         stage.setScene(scene);
         stage.show();
