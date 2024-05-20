@@ -13,8 +13,6 @@ public class Utilities {
     public static String j2_name = "noir";
 
     public static int convertirPixelEnPos(double pixels) {
-        // TODO : à tester
-
         return (int) Math.floor(pixels / TAILLE_TUILE);
     }
 }

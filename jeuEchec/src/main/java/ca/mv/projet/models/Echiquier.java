@@ -10,17 +10,15 @@ import ca.mv.projet.models.pieces.*;
 
 public class Echiquier {
 
-//    public boolean get;
     final public Case[][] plateau;
 
-    public Echiquier() {
+    public Echiquier() { //crée un échequier 8x8 qui contient les pièces au positions initiales
         this.plateau = new Case[Utilities.NB_CASES_COTE][Utilities.NB_CASES_COTE]; // Échiquier 8x8
         instancierCasesVides();
         placerPiecesInitSurPlateau();
     }
 
     private void instancierCasesVides() {
-        // TODO: ajouter le code approprié
         for (int i = 0; i < Utilities.NB_CASES_COTE; i++) {
             for (int j = 0; j < Utilities.NB_CASES_COTE; j++) {
                 plateau[i][j] = new CaseVide(new Position(i,j));
@@ -45,7 +43,7 @@ public class Echiquier {
         placerReine();
     }
     
-    public void placerPions(){
+    public void placerPions(){ //pour chaque case sur la ligne des x correspondante à la bonne couleur, place un pion
         for(int i = Utilities.PREMIERE_POS; i < Utilities.NB_CASES_COTE; i++){
             Position positionInitialeBlanc = new Position(1, i);
             Position positionInitialeNoir = new Position(Utilities.DERNIERE_POS - 1, i);
@@ -104,15 +102,15 @@ public class Echiquier {
                         new Tour(true)); // Tour blanche en H8
     }
 
-    public Case getCaseParPosition(Position position){
+    public Case getCaseParPosition(Position position){ //get une case avec l'object position correspondant
         return plateau[position.getX()][position.getY()];
     }
 
-    public Case getCaseParPosition(int xPosition, int yPosition){
+    public Case getCaseParPosition(int xPosition, int yPosition){ //get une case avec ses coordonées x, y
         return plateau[xPosition][yPosition];
     }
 
-    public void setCaseParPosition(Position posCourante, Position posDestination){
+    public void setCaseParPosition(Position posCourante, Position posDestination){ //remplace la case destination par la case avec la pièce et la case départ par une case vide
         plateau[posDestination.getX()][posDestination.getY()] = getCaseParPosition(posCourante);
         plateau[posCourante.getX()][posCourante.getY()] = new CaseVide(posCourante);
     }
@@ -128,23 +126,23 @@ public class Echiquier {
         Case caseCourante = getCaseParPosition(posCourante);
         Case caseDestination = getCaseParPosition(posDestination);
 
-        return peutBouger(caseCourante.getPiece(), posCourante, posDestination)
+        return peutBouger(caseCourante.getPiece(), posCourante, posDestination) //vérif si la pièce dans la case départ peut exécuter le mouevement voulut et capturer une pièce a la destination s'il y en une
                 && peutCapturer(caseCourante, caseDestination);
     }
 
-    public boolean peutCapturer(Case caseCourante, Case caseDestination) {
+    public boolean peutCapturer(Case caseCourante, Case caseDestination) { //vérif si la capture est possible
         return caseCourante.getPiece().peutCapturer(caseDestination.getPiece());
     }
 
-    public boolean peutBouger(Piece pieceCourante, Position positionCourante, Position posDestination) {
+    public boolean peutBouger(Piece pieceCourante, Position positionCourante, Position posDestination) { //vérif si le move est possible
         return pieceCourante.peutBouger(positionCourante, posDestination, this);
     }
 
-    public Piece getPieceAtPosition(Position position) {
+    public Piece getPieceAtPosition(Position position) { //retourne la pièce à cette position
         return plateau[position.getX()][position.getY()].getPiece();
     }
 
-    public boolean estOccupe(Position pos) {
+    public boolean estOccupe(Position pos) { //retourne si cette case est occupée
         return getCaseParPosition(pos).getPiece() != null;
     }
 

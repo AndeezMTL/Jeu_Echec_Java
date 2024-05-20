@@ -11,6 +11,6 @@ public class Tour extends Piece {
 
     @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
-        return bougerSurOrthogonal(posCourante, posDestination, echiquier);
+        return bougerSurOrthogonal(posCourante, posDestination, echiquier); //vérifie le mouvement en ligne droite
     }
 }

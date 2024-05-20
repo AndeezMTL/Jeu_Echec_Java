@@ -13,8 +13,4 @@ public class Fou extends Piece {
         return bougerSurDiagonal(posCourante, posDestination, echiquier);
     }
 
-//    public boolean estSurDiagonal(Position posCourante, Position posDestination) {
-//        Position mouvement = posDestination.substract(posCourante).abs();
-//        return mouvement.getX() == mouvement.getY();
-//    }
 }

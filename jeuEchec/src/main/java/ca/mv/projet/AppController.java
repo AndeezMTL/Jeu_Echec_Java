@@ -3,21 +3,16 @@ package ca.mv.projet;
 import ca.mv.projet.models.Echiquier;
 import ca.mv.projet.models.Grille;
 import ca.mv.projet.models.cases.Position;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AppController implements Initializable {
-    // TODO: remplacer par le code approprié
-
     private Jeu jeu;
     private Grille grille;
     @FXML private GridPane grid;
@@ -29,7 +24,7 @@ public class AppController implements Initializable {
     private Position positionDepart;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle) { //crée le jeu et utilise son échequier et grille associés. Prend la grid de la grille et l'assigne son anchorpane. Crée les joueurs et initialise la grille
         this.jeu = new Jeu();
         echiquier = jeu.getEchiquier();
         this.grille = jeu.getGrille();
@@ -43,27 +38,19 @@ public class AppController implements Initializable {
     }
 
     @FXML public void registerUserClick(MouseEvent event, int x, int y) {
-        Position positionClicked = new Position(x, y);
-        System.out.println(positionClicked);
-        if (posCourante == null) {
+        Position positionClicked = new Position(x, y); //prends la position de la case cliquée
+        if (posCourante == null) { //si c'est le 1er click, la position de départ = la position cliquée
             positionDepart = positionClicked;
-            if (jeu.getEchiquier().estOccupe(positionDepart)) {
+            if (jeu.getEchiquier().estOccupe(positionDepart)) { //s'il y a une pièce, la pos courante est celle cliquée
                 posCourante = positionDepart;
             }
-
         } else {
-            Position positionDestination = positionClicked;
-            System.out.println(positionDestination);
-            if (!positionDepart.equals(positionDestination)){
-                jeu.mancheJouee(posCourante, positionDestination);
+            Position positionDestination = positionClicked; //si 2e click, position cliquée = position destination
+            if (!positionDepart.equals(positionDestination)){ //si les positions de départ et d'arrivée son différentes
+                jeu.mancheJouee(posCourante, positionDestination); //fait l'action de la position de la pièce vers la destination
             }
-            posCourante = null;
+            posCourante = null; //remets la position de pièce a null
         }
-    }
-
-    public void refreshBoard() {
-        grid.getChildren().clear();
-        grille.creerGrille();
     }
 
     public void setGrid(GridPane grid) {

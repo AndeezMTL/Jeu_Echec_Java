@@ -54,7 +54,6 @@ public class Pion extends Piece {
     }
 
     public Piece promouvoir(String type) {
-        // TODO: remplacer par le code approprié (priorité : -1)
         // Retourne une nouvelle pièce (Reine, par exemple) en cas de promotion
         return new Reine(this.estBlanc);
     }

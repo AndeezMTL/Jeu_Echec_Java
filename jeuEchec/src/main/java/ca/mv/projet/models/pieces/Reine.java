@@ -12,7 +12,7 @@ public class Reine extends Piece {
 
     @Override
     public boolean peutBouger(Position posCourante, Position posDestination, Echiquier echiquier) {
-        return bougerSurDiagonal(posCourante, posDestination, echiquier) || bougerSurOrthogonal(posCourante, posDestination, echiquier);
+        return bougerSurDiagonal(posCourante, posDestination, echiquier) || bougerSurOrthogonal(posCourante, posDestination, echiquier); //applique la logique de mouvement diagonal ou ortogonal
     }
 }
 

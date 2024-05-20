@@ -8,6 +8,7 @@ import ca.mv.projet.models.pieces.Piece;
 import ca.mv.projet.models.pieces.Roi;
 
 public class Jeu {
+    private ResultatManche manche = ResultatManche.INVALIDE;
     private Echiquier echiquier;
     private Joueur j1;
     private Joueur j2;
@@ -40,94 +41,64 @@ public class Jeu {
     }
 
     public boolean estTourDesBlanc() {
-        return (this.tourDeJeux % 2) == 0;
+        return (this.tourDeJeux % 2) == 0; //les tours pairs sont aux blancs
     }
 
     public void mancheJouee(Position pFrom, Position pTo) {
-//        if (estTourDesBlanc() && echiquier.getPieceAtPosition(pFrom).isEstBlanc()) {
-//            ResultatManche manche = executeMove(pFrom, pTo);
-//            switch (manche){
-//                case INVALIDE : {
-//                    break;
-//                }
-//                case DEPLACEMENT :
-//                case CAPTURE : {
-//                    tourDeJeux++;
-//                    break;
-//                }
-//                case ECHEC : {
-//                    System.out.println("Fin de partie. Le roi " + (echiquier.getPieceAtPosition(pTo).isEstBlanc() ? "Blanc" : "Noir") + " à été capturé.");
-//                    break;
-//                }
-//
-//            }
-//
-//        } else {
-//            System.out.println("Ce n'est pas votre tour");
-//        }
-        System.out.println("mancheJouee called with positions: " + pFrom + " to " + pTo);
-
         Piece pieceFrom = echiquier.getPieceAtPosition(pFrom);
+
         if (pieceFrom == null) {
-            System.out.println("No piece at the starting position: " + pFrom);
-            return;
+            return; //si aucune pièce sélectionnée, execute aucun mouv
         }
-
         if (estTourDesBlanc() != pieceFrom.isEstBlanc()) {
-            System.out.println("It's not the turn of " + (pieceFrom.isEstBlanc() ? "White" : "Black"));
+            System.out.println("Pas le tour des " + (pieceFrom.isEstBlanc() ? "blancs" : "noirs")); //check si le tour = la couleur de la pièce clickée
             return;
         }
-
-        System.out.println("Attempting to move " + pieceFrom.getClass().getSimpleName() + " from " + pFrom + " to " + pTo);
 
         ResultatManche manche = executeMove(pFrom, pTo);
+
         switch (manche) {
             case INVALIDE:
-                System.out.println("Move invalid from " + pFrom + " to " + pTo);
+                System.out.println("Move invalide");
                 break;
             case DEPLACEMENT:
             case CAPTURE:
-                System.out.println("Move successful from " + pFrom + " to " + pTo);
                 tourDeJeux++;
-                grille.creerGrille(); // Ensure the UI updates the grid
+                grille.creerGrille(); //update la grile
                 break;
             case ECHEC:
-                System.out.println("Game over. The " + (pieceFrom.isEstBlanc() ? "White" : "Black") + " king was captured.");
+                System.out.println("Le roi " + (pieceFrom.isEstBlanc() ? "noir" : "blanc") + " à été capturé");
                 break;
         }
     }
 
     public ResultatManche executeMove(Position pFrom, Position pTo) {
-        Piece pieceCourante = echiquier.getPieceAtPosition(pFrom);
         Piece pieceDestination = echiquier.getPieceAtPosition(pTo);
 
-        if (echiquier.estOccupe(pFrom)) {
-            if (echiquier.estValidMouve(pFrom, pTo)) {
-                if (pieceDestination != null) {
-                    pieceDestination.die();
+        if (echiquier.estOccupe(pFrom)) { //si la position de départ à une pièce
+            if (echiquier.estValidMouve(pFrom, pTo)) { // si le mouvement est valide
+                if (pieceDestination != null) { //s'il y a une pièce dans la destination
+                    pieceDestination.die(); //capture la pièce
+                    if (pieceDestination.isEstBlanc() && pieceDestination.isEstCapturee()) {//vérifie si la pièce caturée est blanche ou noire, l'ajoute a la liste de pièce capturées correspondante
+                        j1.ajouterPieceCapturee(pieceDestination);
+                    } else if (!pieceDestination.isEstBlanc() && pieceDestination.isEstCapturee()){
+                        j2.ajouterPieceCapturee(pieceDestination);
+                    }
+                    echiquier.setCaseParPosition(pFrom, pTo);//déplace la pièce
+                    grille.creerGrille(); //update la grille
                     if (pieceDestination.getClass() == Roi.class) {
                         // win
-                        grille.creerGrille();
-                        echiquier.setCaseParPosition(pFrom, pTo);
-                        if (pieceDestination.isEstBlanc() && pieceDestination.isEstCapturee())
-                        {
-                            j1.ajouterPieceCapturee(pieceDestination);
-                        } else if (!pieceDestination.isEstBlanc() && pieceDestination.isEstCapturee()) {
-                            j2.ajouterPieceCapturee(pieceDestination);
-                        }
-                        return ResultatManche.ECHEC;
+                        return ResultatManche.ECHEC; //si la pièce capturée est un roi, retourne echec
                     }
-                    grille.creerGrille();
-                    echiquier.setCaseParPosition(pFrom, pTo);
-                    return ResultatManche.CAPTURE;
+                    return ResultatManche.CAPTURE; //si la pièce capturée est pas un roi, retourne capturée
                 }
-                echiquier.setCaseParPosition(pFrom, pTo);
+                echiquier.setCaseParPosition(pFrom, pTo); //si rien n'st capturé, retourne déplacement
                 return ResultatManche.DEPLACEMENT;
             } else {
-                return ResultatManche.INVALIDE;
+                return ResultatManche.INVALIDE; //si rien n'arive, alors mouv invalide
             }
         }
-        return ResultatManche.INVALIDE;
+        return ResultatManche.INVALIDE; //si la case de départ a rien, mouv invalide
     }
 
 
